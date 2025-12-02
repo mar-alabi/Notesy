@@ -41,7 +41,7 @@ Think about what **actions** your app needs to perform:
 
 - `createNote(title, content)` - creates a new note object with unique ID ✅
 - `updateNote(id, title, content)` - finds and updates an existing note
-- `deleteNote(id)` - removes a note from the array
+- `deleteNote(id)` - removes a note from the array ✅
 - `getNotes()` - retrieves all notes
 - `searchNotes(query)` - filters notes by title/content
 
