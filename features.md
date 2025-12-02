@@ -48,11 +48,11 @@ Think about what **actions** your app needs to perform:
 **localStorage functions:**
 
 - `saveToLocalStorage(notes)` - saves the notes array to localStorage ✅
-- `loadFromLocalStorage()` - retrieves notes from localStorage on page load
+- `loadFromLocalStorage()` - retrieves notes from localStorage on page load ✅
 
 **UI/rendering functions:**
 
-- `renderNotesList(notes)` - displays all notes in the DOM
+- `renderNotesList(notes)` - displays all notes in the DOM ✅
 - `renderNoteDetail(note)` - shows a single note for editing
 - `clearForm()` - resets the input fields
 
