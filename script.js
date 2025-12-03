@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const noteContent = document.getElementById("note-content");
   const saveButton = document.getElementById("save-btn");
   const notesListDiv = document.getElementById("notes-list-div");
+  const searchField = document.getElementById("search-note");
 
   // ============================================
   // 2. STATE VARIABLES
@@ -156,6 +157,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  /**
+   * Filters the array and renders notes that match user query to the UI
+   * @param {string} userQuery
+   */
+  function searchNotes(userQuery) {
+    userQuery = userQuery.toLowerCase();
+    if (userQuery === "") {
+      renderNotesList(notesArray);
+    } else {
+      let searchedArray = notesArray.filter(
+        (note) =>
+          note.title.toLowerCase().includes(userQuery) ||
+          note.content.toLowerCase().includes(userQuery)
+      );
+      renderNotesList(searchedArray);
+    }
+  }
   // ============================================
   // 7. HELPER FUNCTIONS
   // ============================================
@@ -185,5 +203,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     //clear inputs after saving
     clearInputs();
+  });
+
+  /**
+   * Handles user search
+   *
+   */
+  searchField.addEventListener("input", () => {
+    searchNotes(searchField.value);
+  });
+
+  noteContent.addEventListener("keypress", (e) => {
+    if (e.key === "Enter" && e.ctrlKey) {
+      if (currentEditingNoteId === null) {
+        createNote(noteTitle.value, noteContent.value);
+      } else {
+        updateExistingNote(
+          currentEditingNoteId,
+          noteTitle.value,
+          noteContent.value
+        );
+      }
+      //clear inputs after saving
+      clearInputs();
+    }
   });
 });
