@@ -13,35 +13,41 @@
       </header>
 
       <!-- FORM -->
-      <form>
+      <div id="form-section" class="form-section">
+        <form>
+          <input
+            type="text"
+            name="note-title"
+            id="note-title"
+            placeholder="Title:"
+          />
+          <textarea
+            name="note-content"
+            id="note-content"
+            placeholder="Content:"
+            rows="10"
+          ></textarea>
+          <button id="save-btn">Save</button>
+          <button id="cancel-btn" type="button">Cancel</button>
+        </form>
+      </div>
+      <div id="notes-section">
+        <!--CREATE BUTTON AREA -->
+        <div class="create-area">
+          <button id="create-btn">Create note</button>
+          <span id="create-message"></span>
+        </div>
+        <!-- SEARCH -->
         <input
-          type="text"
-          name="note-title"
-          id="note-title"
-          placeholder="Title:"
+          type="search"
+          name="search-note"
+          id="search-note"
+          placeholder="Search notes..."
+          class="search-input"
         />
-
-        <textarea
-          name="note-content"
-          id="note-content"
-          placeholder="Content:"
-          rows="10"
-        ></textarea>
-
-        <button id="save-btn">Save</button>
-      </form>
-
-      <!-- SEARCH -->
-      <input
-        type="search"
-        name="search-note"
-        id="search-note"
-        placeholder="Search notes..."
-        class="search-input"
-      />
-
-      <!-- NOTES GRID -->
-      <div id="notes-list-div"></div>
+        <!-- NOTES GRID -->
+        <div id="notes-list-div"></div>
+      </div>
 
       <!-- SYNC -->
       <div class="sync-area">

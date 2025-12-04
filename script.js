@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchField = document.getElementById("search-note");
   const syncButton = document.getElementById("sync-btn");
   const syncMessage = document.getElementById("sync-message");
+  const formSection = document.getElementById("form-section");
+  const notesSection = document.getElementById("notes-section");
+  const createButton = document.getElementById("create-btn");
+  const cancelButton = document.getElementById("cancel-btn");
 
   // ============================================
   // 2. STATE VARIABLES
@@ -55,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     noteContent.value = noteToEdit.content;
     currentEditingNoteId = id;
     saveButton.textContent = "Update";
+    showFormView();
   }
 
   /**
@@ -208,6 +213,16 @@ document.addEventListener("DOMContentLoaded", () => {
       renderNotesList(searchedArray);
     }
   }
+
+  function showFormView() {
+    formSection.style.display = "block";
+    notesSection.style.display = "none";
+  }
+
+  function showNotesView() {
+    formSection.style.display = "none";
+    notesSection.style.display = "block";
+  }
   // ============================================
   // 7. HELPER FUNCTIONS
   // ============================================
@@ -255,11 +270,17 @@ document.addEventListener("DOMContentLoaded", () => {
         noteContent.value
       );
     }
+    showNotesView();
   }
   // ============================================
   // 8. EVENT LISTENERS
   // ============================================
 
+  createButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    clearInputs();
+    showFormView();
+  });
   /**
    * Handles save/update button click
    * Creates new note in CREATE mode or updates existing note in UPDATE mode
@@ -290,6 +311,9 @@ document.addEventListener("DOMContentLoaded", () => {
   syncButton.addEventListener("click", (e) => {
     e.preventDefault();
     handleSync();
+  });
+  cancelButton.addEventListener("click", () => {
+    showNotesView();
   });
   // ============================================
   // 9.API FUNCTIONS
