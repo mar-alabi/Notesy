@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       title: title,
       content: content,
       createdAt: Date.now(),
+      lastEdited: Date.now(),
     };
     notesArray.push(newNote);
     saveToLocalStorage(notesArray);
@@ -176,10 +177,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let note of notes) {
       const listItem = document.createElement("li");
-
+      const isRecent =
+        (note.lastEdited && Date.now() - note.lastEdited < 3600000) ||
+        Date.now() - note.createdAt < 3600000;
       listItem.innerHTML = `
         
-          <h3>${note.title}</h3>
+          <h3>
+          ${note.title}
+           ${isRecent ? '<span class="badge-new">NEW</span>' : ""}
+           </h3>
           <p>${note.content.slice(0, 40)}...</p>
           <small>${new Date(note.createdAt).toLocaleString("en-US", {
             dateStyle: "medium",
