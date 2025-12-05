@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const notesSection = document.getElementById("notes-section");
   const createButton = document.getElementById("create-btn");
   const cancelButton = document.getElementById("cancel-btn");
+  const formHeading = document.getElementById("form-heading");
 
   // ============================================
   // 2. STATE VARIABLES
@@ -59,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     noteContent.value = noteToEdit.content;
     currentEditingNoteId = id;
     saveButton.textContent = "Update";
+    formHeading.textContent = "Edit Note";
     showFormView();
   }
 
@@ -243,6 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
     noteContent.value = "";
     currentEditingNoteId = null;
     saveButton.textContent = "Save";
+    formHeading.textContent = "Create New Note";
   }
 
   function handleSync() {
@@ -289,6 +292,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     clearInputs();
     showFormView();
+    formHeading.textContent = "Create New Note";
   });
   /**
    * Handles save/update button click
