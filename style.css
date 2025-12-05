@@ -29,8 +29,20 @@ h1 {
 }
 
 /* FORM ----------------------------------------------------------- */
-.form-section {
-  display: none;
+#form-section {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#form-section.active {
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+  pointer-events: auto;
 }
 
 #form-heading {
@@ -203,6 +215,19 @@ button {
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
+#notes-section {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#notes-section.hidden {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  pointer-events: none;
+  width: 100%;
+}
 
 /* ACTION BUTTONS ------------------------------------------------ */
 .actions {
@@ -238,6 +263,7 @@ button {
 }
 
 /* SYNC MESSAGE -------------------------------------------------- */
+
 #sync-message {
   background-color: #ecf0f1;
   color: #2c3e50;
@@ -245,8 +271,26 @@ button {
   border-radius: 6px;
   min-height: 20px;
   display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
+/* Add these new classes */
+#sync-message.syncing {
+  background-color: #d1ecf1;
+  color: #333;
+}
+
+#sync-message.success {
+  background-color: #c3e6cb;
+  color: #333;
+}
+
+#sync-message.error {
+  background-color: #f5c6cb;
+  color: #333;
+}
 /* MOBILE --------------------------------------------------------- */
 @media (max-width: 600px) {
   .container {

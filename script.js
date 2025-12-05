@@ -79,7 +79,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Update its properties with the NEW values
     noteToUpdate.title = newTitle; // Use newTitle
-    noteToUpdate.content = newContent; // Use newContent
+    noteToUpdate.content = newContent;
+    noteToUpdate.lastEdited = Date.now(); // Use newContent
 
     // 3. Save to localStorage
     saveToLocalStorage(notesArray);
@@ -226,13 +227,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showFormView() {
-    formSection.style.display = "block";
-    notesSection.style.display = "none";
+    formSection.classList.add("active");
+    notesSection.classList.add("hidden");
   }
 
   function showNotesView() {
-    formSection.style.display = "none";
-    notesSection.style.display = "block";
+    formSection.classList.remove("active");
+    notesSection.classList.remove("hidden");
   }
   // ============================================
   // 7. HELPER FUNCTIONS
@@ -251,17 +252,21 @@ document.addEventListener("DOMContentLoaded", () => {
   function handleSync() {
     syncButton.disabled = true;
     // 1. Update UI to show "Syncing..."
-    syncMessage.textContent = "Syncing...";
+    syncMessage.textContent = "🔄 Syncing....";
+    syncMessage.className = "syncing";
     // 2. Call syncWithAPI(notesArray)
     syncWithAPI(notesArray)
       .then(() => {
         syncMessage.textContent = "Synced!";
+        syncMessage.className = "success";
         setTimeout(() => {
           syncMessage.textContent = "";
+          syncMessage.className = "";
         }, 3000);
       })
       .catch((error) => {
         syncMessage.textContent = `Sync failed: ${error}`;
+        syncMessage.className = "error";
       })
       .finally(() => {
         syncButton.disabled = false; // Re-enable button
